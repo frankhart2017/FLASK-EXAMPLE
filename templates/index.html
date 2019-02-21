@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sample Flask App</title>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <form method="post">
+      <input type="email" placeholder="Email" id="email">
+      <input type="password" placeholder="Password" id="password">
+      <input type="button" id="submit" value="Submit">
+    </form>
+
+    <script type="text/javascript">
+        $("#submit").click(function() {
+          var Email = $("#email").val();
+          var Password = $("#password").val();
+
+          if(Email.length != 0 && Password.length != 0) {
+            $.ajax({
+              url: "/",
+              type: "post",
+              dataType: "json",
+              data: {email: Email, password: Password},
+              success: function(result) {
+                alert(result.text);
+              }
+            });
+          } else {
+            alert("Complete the form!");
+          }
+        });
+    </script>
+  </body>
+</html>
